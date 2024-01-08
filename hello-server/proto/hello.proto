@@ -1,0 +1,22 @@
+// 使用proto3语法
+syntax = "proto3";
+
+// 这部分的内容是关于最后生成的go文件是处在哪个目录哪个包中
+// .代表在当前目录生成，service代表了生成的go文件的包名是service
+// 其实很容易可以看出，我们定义了一个service，称为SayHello，这个服务中有一个rpc方法，名为SayHello
+// 这个方法会发送一个HelloRequest，然后返回一个helloResponse
+option go_package=".;service";
+
+service SayHello{
+  rpc SayHello(HelloRequest) returns (HelloResponse){}
+}
+
+message HelloRequest{
+  string requestName =1 ;
+  int64  age =20 ;
+  repeated string name=2;
+}
+
+message HelloResponse{
+  string responseMsg =1;
+}
